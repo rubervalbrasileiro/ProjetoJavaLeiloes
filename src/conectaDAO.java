@@ -5,37 +5,45 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
-
-
 /**
  *
  * @author Adm
  */
 public class conectaDAO {
+
     public Connection conn;
     
-    
-    public Connection connectDB(){
-        Connection conn = null;
-        
+
+    private final String url = "jdbc:mysql://localhost:3306/uc11?useSSL=false";
+    private final String user = "root";
+    private final String password = "#SENAC986525";
+
+    Connection connectDB(){
         try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        conn = DriverManager.getConnection(url, user, password);
+        System.out.println("Conexão realizada com sucesso");
+        return conn;
         
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/uc11?user=root&password=#senac9865");
-            
-        } catch (SQLException erro){
-            JOptionPane.showMessageDialog(null, "Erro ConectaDAO" + erro.getMessage());
+    }catch(ClassNotFoundException | SQLException ex){
+            System.out.println("Falha na conexao com o banco de dados" + ex.getMessage());
+            return null;
+        }
+    }
+
+    public Connection getConn() {
+        if(conn == null){
+            conn = connectDB();
         }
         return conn;
     }
-    
-    public Connection getConn(){
-        return conn;
-    }
-    
+
     public void desconectar(Connection conn, Statement stmt) {
-        try{
-            conn.close();
-        }catch(SQLException ex){
+        try {
+            if (stmt != null) stmt.close();  
+            if (conn != null) conn.close();  
+            System.out.println("Desconexão realizada com sucesso");
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Não foi possível se conectar ao banco de dados");
         }
     }
