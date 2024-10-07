@@ -164,6 +164,7 @@ public class cadastroVIEW extends javax.swing.JFrame {
         }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(null, "Valor deve ser um número válido.");
         }
+        limparCampos();
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutosActionPerformed
@@ -218,4 +219,9 @@ public class cadastroVIEW extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
+
+public void limparCampos(){
+    cadastroNome.setText("");
+    cadastroValor.setText("");
+    }
 }
