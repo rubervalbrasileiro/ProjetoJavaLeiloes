@@ -1,10 +1,10 @@
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
-
-/** Tela de Visualização de listagem
+/**
+ * Tela de Visualização de listagem
  *
  * @author Adm | Revisionado Ruberval Brasileiro
  */
@@ -18,7 +18,6 @@ public class listagemVIEW extends javax.swing.JFrame {
         listarProdutos();
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -130,11 +129,22 @@ public class listagemVIEW extends javax.swing.JFrame {
 
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
         String id = id_produto_venda.getText();
-        
-        ProdutosDAO produtosdao = new ProdutosDAO();
-        
-        //produtosdao.venderProduto(Integer.parseInt(id));
-        listarProdutos();
+
+        if (id.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor insira um id válido");
+            return;
+        }
+
+        try {
+            int idproduto = Integer.parseInt(id);
+            ProdutosDAO produtosdao = new ProdutosDAO();
+            produtosdao.venderProduto(Integer.parseInt(id));
+            listarProdutos();
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "O id deve ser um número válido!");
+        }
+
+
     }//GEN-LAST:event_btnVenderActionPerformed
 
     private void btnVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendasActionPerformed
@@ -194,16 +204,16 @@ public class listagemVIEW extends javax.swing.JFrame {
     private javax.swing.JTable listaProdutos;
     // End of variables declaration//GEN-END:variables
 
-    private void listarProdutos(){
+    private void listarProdutos() {
         try {
             ProdutosDAO produtosdao = new ProdutosDAO();
-            
+
             DefaultTableModel model = (DefaultTableModel) listaProdutos.getModel();
             model.setNumRows(0);
-            
+
             ArrayList<ProdutosDTO> listagem = produtosdao.listarProdutos();
-            
-            for(int i = 0; i < listagem.size(); i++){
+
+            for (int i = 0; i < listagem.size(); i++) {
                 model.addRow(new Object[]{
                     listagem.get(i).getId(),
                     listagem.get(i).getNome(),
@@ -212,7 +222,8 @@ public class listagemVIEW extends javax.swing.JFrame {
                 });
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
-    
+
     }
 }
