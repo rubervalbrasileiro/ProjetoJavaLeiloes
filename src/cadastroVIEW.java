@@ -52,14 +52,21 @@ public class cadastroVIEW extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Valor:");
 
+        cadastroNome.setToolTipText("Insira o nome do Produto");
+        cadastroNome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cadastroNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cadastroNomeActionPerformed(evt);
             }
         });
 
+        cadastroValor.setToolTipText("Informe o valor");
+        cadastroValor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         btnCadastrar.setBackground(new java.awt.Color(153, 255, 255));
         btnCadastrar.setText("Cadastrar");
+        btnCadastrar.setToolTipText("Botão para Cadastrar");
+        btnCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrarActionPerformed(evt);
@@ -67,6 +74,8 @@ public class cadastroVIEW extends javax.swing.JFrame {
         });
 
         btnProdutos.setText("Consultar Produtos");
+        btnProdutos.setToolTipText("Botão para Consultar Produtos");
+        btnProdutos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnProdutos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProdutosActionPerformed(evt);
@@ -165,11 +174,13 @@ public class cadastroVIEW extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Valor deve ser um número válido.");
         }
         limparCampos();
+        cadastroNome.requestFocus();
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutosActionPerformed
         listagemVIEW listagem = new listagemVIEW(); 
         listagem.setVisible(true);
+        //dispose();
     }//GEN-LAST:event_btnProdutosActionPerformed
 
     /**
