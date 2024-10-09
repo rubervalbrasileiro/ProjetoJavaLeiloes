@@ -147,13 +147,27 @@ public class listagemVIEW extends javax.swing.JFrame {
             return;
         }
 
-        try {
+       try {
             int idproduto = Integer.parseInt(id);
-            ProdutosDAO produtosdao = new ProdutosDAO();
+            ProdutosDAO produtosdao = new ProdutosDAO(); 
+            
+            
+            ProdutosDTO produto = produtosdao.buscarProdutoPorId(idproduto);
+            if(produto == null) {
+                JOptionPane.showMessageDialog(null, "Produto não encontrado!");
+                return;
+            }
+            if("Vendido".equals(produto.getStatus())){
+                JOptionPane.showMessageDialog(this, "Este produto já foi vendido!");
+            }else{
             produtosdao.venderProduto(Integer.parseInt(id));
-            listarProdutos();
+           listarVendas();
+                JOptionPane.showMessageDialog(null, "Produto vendido com sucesso!");
+            }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "O id deve ser um número válido!");
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Erro ao realizar a venda");
         }
 
 
@@ -231,6 +245,28 @@ public class listagemVIEW extends javax.swing.JFrame {
                     listagem.get(i).getNome(),
                     listagem.get(i).getValor(),
                     listagem.get(i).getStatus()
+                });
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+    private void listarVendas() {
+        try {
+            ProdutosDAO produtosdao = new ProdutosDAO();
+
+            DefaultTableModel model = (DefaultTableModel) listaProdutos.getModel();
+            model.setNumRows(0);
+
+            ArrayList<ProdutosDTO> listagemVendas = produtosdao.listarVendas();
+
+            for (ProdutosDTO produto : listagemVendas) {
+                model.addRow(new Object[]{
+                 produto.getId(),
+                 produto.getNome(),
+                 produto.getValor(),
+                 produto.getStatus()
                 });
             }
         } catch (Exception e) {
