@@ -152,7 +152,6 @@ public class vendasVIEW extends javax.swing.JFrame {
             int idproduto = Integer.parseInt(id);
             ProdutosDAO produtosdao = new ProdutosDAO(); 
             
-            
             ProdutosDTO produto = produtosdao.buscarProdutoPorId(idproduto);
             if(produto == null) {
                 JOptionPane.showMessageDialog(null, "Produto não encontrado!");
