@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- * Tela de Visualização de listagem
+ * Tela de Visualização de listagem vendas
  *
  * @author Adm | Revisionado Ruberval Brasileiro
  */
@@ -150,11 +150,25 @@ public class vendasVIEW extends javax.swing.JFrame {
 
         try {
             int idproduto = Integer.parseInt(id);
-            ProdutosDAO produtosdao = new ProdutosDAO();
+            ProdutosDAO produtosdao = new ProdutosDAO(); 
+            
+            
+            ProdutosDTO produto = produtosdao.buscarProdutoPorId(idproduto);
+            if(produto == null) {
+                JOptionPane.showMessageDialog(null, "Produto não encontrado!");
+                return;
+            }
+            if("Vendido".equals(produto.getStatus())){
+                JOptionPane.showMessageDialog(this, "Este produto já foi vendido!");
+            }else{
             produtosdao.venderProduto(Integer.parseInt(id));
            listarVendas();
+                JOptionPane.showMessageDialog(null, "Produto vendido com sucesso!");
+            }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "O id deve ser um número válido!");
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Erro ao realizar a venda");
         }
 
 

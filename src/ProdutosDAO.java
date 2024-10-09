@@ -149,5 +149,38 @@ public class ProdutosDAO {
         }
         return listagemVendas;
     }
+    
+    public ProdutosDTO buscarProdutoPorId(int id){
+        String sql = "SELECT * FROM produtos WHERE id =?";
+        conn = new conectaDAO().connectDB();
+        try{
+            prep = conn.prepareStatement(sql);
+            prep.setInt(1, id);
+            resultset = prep.executeQuery();
+            
+            if(resultset.next()){
+                ProdutosDTO produto = new ProdutosDTO();
+                produto.setId(resultset.getInt("id"));
+                produto.setNome(resultset.getString("nome"));
+                produto.setValor(resultset.getInt("valor"));
+                produto.setStatus(resultset.getString("status"));
+                return produto;
+            }
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Erro ao buscar o produto!");
+        }finally{
+            try{
+                if(resultset != null){
+                    resultset.close();
+                }
+                if(conn != null){
+                    conn.close();
+                }
+            }catch(SQLException e){
+                JOptionPane.showMessageDialog(null, "Erro ao fechar a conexão!" + e.getMessage());
+            }
+        }
+        return null;
+    }
 
 }
