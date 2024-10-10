@@ -128,11 +128,23 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="cadastroNome">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Insira o nome do Produto"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Hand Cursor"/>
+        </Property>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cadastroNomeActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="cadastroValor">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Informe o valor"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Hand Cursor"/>
+        </Property>
+      </Properties>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator1">
     </Component>
@@ -144,6 +156,10 @@
           <Color blue="ff" green="ff" red="99" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Cadastrar"/>
+        <Property name="toolTipText" type="java.lang.String" value="Bot&#xe3;o para Cadastrar"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Hand Cursor"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadastrarActionPerformed"/>
@@ -152,6 +168,10 @@
     <Component class="javax.swing.JButton" name="btnProdutos">
       <Properties>
         <Property name="text" type="java.lang.String" value="Consultar Produtos"/>
+        <Property name="toolTipText" type="java.lang.String" value="Bot&#xe3;o para Consultar Produtos"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Hand Cursor"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProdutosActionPerformed"/>

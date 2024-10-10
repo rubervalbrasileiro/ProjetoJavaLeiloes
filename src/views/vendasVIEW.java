@@ -1,24 +1,23 @@
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
-
-/** Tela de Visualização de listagem
+/**
+ * Tela de Visualização de listagem vendas
  *
  * @author Adm | Revisionado Ruberval Brasileiro
  */
-public class listagemVIEW extends javax.swing.JFrame {
+public class vendasVIEW extends javax.swing.JFrame {
 
     /**
      * Creates new form listagemVIEW
      */
-    public listagemVIEW() {
+    public vendasVIEW() {
         initComponents();
-        listarProdutos();
+        listarVendas();
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -47,24 +46,34 @@ public class listagemVIEW extends javax.swing.JFrame {
                 "ID", "Nome", "Valor", "Status"
             }
         ));
+        listaProdutos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jScrollPane1.setViewportView(listaProdutos);
 
         jLabel1.setFont(new java.awt.Font("Lucida Fax", 0, 18)); // NOI18N
-        jLabel1.setText("Lista de Produtos");
+        jLabel1.setText("Lista de Produtos Vendidos");
 
         jLabel2.setFont(new java.awt.Font("Lucida Fax", 0, 14)); // NOI18N
         jLabel2.setText("Vender Produto (ID)");
 
+        jScrollPane2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        id_produto_venda.setToolTipText("Informe ID da venda");
         jScrollPane2.setViewportView(id_produto_venda);
 
         btnVender.setText("Vender");
+        btnVender.setToolTipText("Botão para Vender");
+        btnVender.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVenderActionPerformed(evt);
             }
         });
 
+        jSeparator1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         btnVendas.setText("Consultar Vendas");
+        btnVendas.setToolTipText("Botão para Consultar");
+        btnVendas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVendas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVendasActionPerformed(evt);
@@ -72,6 +81,8 @@ public class listagemVIEW extends javax.swing.JFrame {
         });
 
         btnVoltar.setText("Voltar");
+        btnVoltar.setToolTipText("Botão para Voltar");
+        btnVoltar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVoltarActionPerformed(evt);
@@ -83,26 +94,27 @@ public class listagemVIEW extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnVender))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(btnVoltar)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(47, 47, 47)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnVender))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(btnVoltar)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(btnVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(137, 137, 137)
+                        .addComponent(jLabel1)))
                 .addContainerGap(49, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(193, 193, 193))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,16 +142,40 @@ public class listagemVIEW extends javax.swing.JFrame {
 
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
         String id = id_produto_venda.getText();
-        
-        ProdutosDAO produtosdao = new ProdutosDAO();
-        
-        //produtosdao.venderProduto(Integer.parseInt(id));
-        listarProdutos();
+
+        if (id.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor insira um id válido");
+            return;
+        }
+
+        try {
+            int idproduto = Integer.parseInt(id);
+            ProdutosDAO produtosdao = new ProdutosDAO(); 
+            
+            ProdutosDTO produto = produtosdao.buscarProdutoPorId(idproduto);
+            if(produto == null) {
+                JOptionPane.showMessageDialog(null, "Produto não encontrado!");
+                return;
+            }
+            if("Vendido".equals(produto.getStatus())){
+                JOptionPane.showMessageDialog(this, "Este produto já foi vendido!");
+            }else{
+            produtosdao.venderProduto(Integer.parseInt(id));
+           listarVendas();
+                JOptionPane.showMessageDialog(null, "Produto vendido com sucesso!");
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "O id deve ser um número válido!");
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Erro ao realizar a venda");
+        }
+
+
     }//GEN-LAST:event_btnVenderActionPerformed
 
     private void btnVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendasActionPerformed
-        //vendasVIEW vendas = new vendasVIEW(); 
-        //vendas.setVisible(true);
+        vendasVIEW vendas = new vendasVIEW(); 
+        vendas.setVisible(true);
     }//GEN-LAST:event_btnVendasActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
@@ -194,25 +230,26 @@ public class listagemVIEW extends javax.swing.JFrame {
     private javax.swing.JTable listaProdutos;
     // End of variables declaration//GEN-END:variables
 
-    private void listarProdutos(){
+    private void listarVendas() {
         try {
             ProdutosDAO produtosdao = new ProdutosDAO();
-            
+
             DefaultTableModel model = (DefaultTableModel) listaProdutos.getModel();
             model.setNumRows(0);
-            
-            ArrayList<ProdutosDTO> listagem = produtosdao.listarProdutos();
-            
-            for(int i = 0; i < listagem.size(); i++){
+
+            ArrayList<ProdutosDTO> listagemVendas = produtosdao.listarVendas();
+
+            for (ProdutosDTO produto : listagemVendas) {
                 model.addRow(new Object[]{
-                    listagem.get(i).getId(),
-                    listagem.get(i).getNome(),
-                    listagem.get(i).getValor(),
-                    listagem.get(i).getStatus()
+                 produto.getId(),
+                 produto.getNome(),
+                 produto.getValor(),
+                 produto.getStatus()
                 });
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
-    
+
     }
 }
